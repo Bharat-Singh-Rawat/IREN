@@ -139,6 +139,8 @@
   .modal-content img { width: 100%; border-radius: 14px; max-height: 320px; object-fit: cover; margin-bottom: 1rem; }
   .modal-text h3 { margin-bottom: 0.5rem; font-size: 20px; color: var(--text-dark); font-family: 'DM Serif Display', serif; }
   .modal-text p { color: var(--text-mid); font-size: 14px; line-height: 1.7; margin-bottom: 0.8rem; }
+  .modal-link { color: var(--green-dark); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 0.2rem; }
+  .modal-link:hover { color: var(--green-base); }
 
   /* CONTACT */
   .contact { background: var(--mint-bg); border-top: 0.5px solid var(--green-pale); }
@@ -386,6 +388,12 @@
       <div class="team-country">&#127470;&#127475; India</div>
     </div>
     <div class="team-card">
+      <img class="team-photo" src="Rajat.jpeg" alt="Dr. Rajat Rathod" data-name="Dr. Rajat Rathod" data-role="Researcher | Entrepreneur | Nuclear Engineer | Robotics Innovator" data-description="Dr. Rajat Rathod is a technology entrepreneur, researcher, and Ph.D. scholar specializing in robotics, nuclear engineering, artificial intelligence, and autonomous systems. With leadership experience across nuclear technology, mobility solutions, and advanced engineering ventures, he has pioneered autonomous robotic systems for reactor maintenance, nuclear microreactors, AI-powered industrial automation, and technology commercialization. His published research focuses on nuclear robotics, machine learning, autonomous vision systems, and advanced reactor technologies. Driven by sustainable innovation, he works at the convergence of deep-tech research, industrial automation, and next-generation energy systems." data-link="https://www.linkedin.com/in/irajatrathod/" />
+      <div class="team-name">Dr. Rajat Rathod</div>
+      <div class="team-role">Researcher | Entrepreneur | Nuclear Engineer | Robotics Innovator</div>
+      <div class="team-country">&#127470;&#127475; India</div>
+    </div>
+    <div class="team-card">
       <div class="avatar">AR</div>
       <div class="team-name">Dr. Amara Reyes</div>
       <div class="team-role">Director General</div>
@@ -432,6 +440,7 @@
       <h3 id="modalName"></h3>
       <p id="modalRole"></p>
       <p id="modalDescription"></p>
+      <a id="modalLink" class="modal-link" href="#" target="_blank" rel="noopener" hidden>View LinkedIn profile</a>
     </div>
   </div>
 </div>
@@ -541,6 +550,7 @@
   const modalName = document.getElementById('modalName');
   const modalRole = document.getElementById('modalRole');
   const modalDescription = document.getElementById('modalDescription');
+  const modalLink = document.getElementById('modalLink');
   const modalClose = document.getElementById('modalClose');
 
   document.querySelectorAll('.team-photo[data-name]').forEach(photo => {
@@ -550,6 +560,14 @@
       modalName.textContent = photo.dataset.name;
       modalRole.textContent = photo.dataset.role;
       modalDescription.textContent = photo.dataset.description;
+
+      if (photo.dataset.link) {
+        modalLink.href = photo.dataset.link;
+        modalLink.hidden = false;
+      } else {
+        modalLink.hidden = true;
+      }
+
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
     });
